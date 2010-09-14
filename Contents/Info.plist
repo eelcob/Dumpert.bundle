@@ -19,7 +19,7 @@
 	<key>PlexAudioCodec</key>
 	<string>MP3</string>
 	<key>PlexClientPlatforms</key>
-	<string>MacOSX</string>
+	<string>MacOSX,iOS</string>
 	<key>PlexFrameworkVersion</key>
 	<string>1</string>
 	<key>PlexMediaContainer</key>

@@ -153,7 +153,7 @@ def ParsePage(dir, url, regex, viewGroup):
  
   results_ouder = re.compile(REGEX_OUDER, re.DOTALL + re.IGNORECASE + re.M).findall(data)
   if len(results_ouder) > 0:
-    dir.Append(Function(DirectoryItem(DumpertPage, title="[OUDER]", summary="Oudere items (pagina " + str(NEXT_PAGE+1) + ")", thumb=R(PLUGIN_ICON_NEXT)), pageUrl = url, pageIndex = NEXT_PAGE))
+    dir.Append(Function(DirectoryItem(DumpertPage, title="[OUDER]", summary="Oudere items (pagina " + str(NEXT_PAGE+1) + ")", thumb=R(PLUGIN_ICON_NEXT)), pageUrl = url, pageIndex = NEXT_PAGE, viewGroup='Details'))
 
   if len(results) == 0: return MessageContainer("Zoekresultaat", "Er zijn geen items gevonden.")
   else: return dir
