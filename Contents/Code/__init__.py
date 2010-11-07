@@ -26,7 +26,7 @@ CACHE_INTERVAL = 3600
 
 # REGULAR EXPRESSIONS
 REGEX_PAGE_ITEM = r"""<a class="item" href="http://www.dumpert.nl/mediabase/([0-9]+)/([0-9a-f]+)/([^<]+).html">\s+<img src="([^<]+)" alt="[^<]+" title="[^<]+" width="100" height="100" />\s+<div class="info">\s+<h3>([^<]+)</h3>\s+<div class="date">[^<]+</div>\s+<p>([^<]+)</p>"""
-REGEX_STREAM = r"""autoStart=true&file=([^<]+)&recommendations"""
+REGEX_STREAM = r"""autoStart=true&amp;streamer=lighttpd&amp;file=([^<]+)&amp;recommendations"""
 REGEX_AUDIO = r"""file=([^<]+)&config"""
 REGEX_IMAGE = r"""<img src="([^<]+)" onclick="window.open"""
 REGEX_IMAGE2 = r"""<img src="([^<]+)" class="picca" """
