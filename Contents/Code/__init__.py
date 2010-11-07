@@ -34,7 +34,7 @@ REGEX_OUDER = r"""<span>Ouder</span>"""
 REGEX_COMMENTS = r"""comments.push\('<p>([^<]+)</p>'\);\s+comments.push\('<p class="footer">([^<]+) ([0-9]+)-([0-9]+)-([0-9]+) @"""
 
 # Default artwork and icon(s)
-PLUGIN_ARTWORK = "art-default.png"
+PLUGIN_ARTWORK = "art-default.jpg"
 PLUGIN_ICON_DEFAULT = "icon-default.png"
 PLUGIN_ICON_TOPPERS = "icon-toppers.png"
 PLUGIN_ICON_FILMPJES = "icon-filmpjes.png"
