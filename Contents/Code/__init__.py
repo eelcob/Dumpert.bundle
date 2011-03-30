@@ -4,7 +4,7 @@ import re
 
 PLUGIN_TITLE = "Dumpert"
 PLUGIN_VIDEO_PREFIX = "/video/dumpert"
-PLUGIN_IMAGE_PREFIX = "/photos/dumpert"
+PLUGIN_PHOTO_PREFIX = "/photos/dumpert"
 
 # URLS
 URL_ROOT_URI     = "http://www.dumpert.nl/"
@@ -40,7 +40,7 @@ PLUGIN_ICON_NEXT = "icon-next.png"
 
 def Start():
   Plugin.AddPrefixHandler(PLUGIN_VIDEO_PREFIX, MainMenuVideo, PLUGIN_TITLE, PLUGIN_ICON_DEFAULT, PLUGIN_ARTWORK)
-  Plugin.AddPrefixHandler(PLUGIN_IMAGE_PREFIX, MainMenuAudio, PLUGIN_TITLE, PLUGIN_ICON_DEFAULT, PLUGIN_ARTWORK)
+  Plugin.AddPrefixHandler(PLUGIN_PHOTO_PREFIX, MainMenuPhoto, PLUGIN_TITLE, PLUGIN_ICON_DEFAULT, PLUGIN_ARTWORK)
 
   Plugin.AddViewGroup("List", viewMode="List", mediaType="items")
   Plugin.AddViewGroup("Photos", viewMode="Pictures", mediaType="photos")
@@ -69,12 +69,12 @@ def MainMenuVideo():
 
 ####################################################################################################
 
-def MainMenuAudio():
+def MainMenuPhoto():
   dir = MediaContainer(noCache=True) 
   dir.Append(Function(DirectoryItem(DumpertPage, title="Plaatjes", thumb=R(PLUGIN_ICON_PLAATJES)), pageUrl = URL_PLAATJES, pageIndex = 0, viewGroup='Photos'))
   dir.Append(Function(InputDirectoryItem(SearchPage, title="Zoeken", thumb=R(PLUGIN_ICON_ZOEKEN), prompt="Zoeken"), pageUrl = URL_PHOTO_ZOEKEN, pageIndex = 0, viewGroup='Photos'))
   dir.Append(PrefsItem(title="Instellingen", thumb=R(PLUGIN_ICON_SETTINGS)))
-  dir.Append(Function(DirectoryItem(AboutAudioPage, title="Help", thumb=R(PLUGIN_ICON_HELP))))
+  dir.Append(Function(DirectoryItem(AboutPhotoPage, title="Help", thumb=R(PLUGIN_ICON_HELP))))
 
   return dir
 
@@ -85,7 +85,7 @@ def AboutVideoPage(sender):
 
 ####################################################################################################
 
-def AboutAudioPage(sender):
+def AboutPhotoPage(sender):
   return MessageContainer("Help", "Als het commentaar uit staat, dan kan je alleen de eerste foto van elk\nitem bekijken. Je kan dan echter wel direct naar het volgende item.")
 
 ####################################################################################################
@@ -135,7 +135,7 @@ def ParsePage(dir, url, index, title, regex, viewGroup):
 
   results_ouder = re.compile(REGEX_OUDER, re.DOTALL + re.IGNORECASE + re.M).findall(data)
   if len(results_ouder) > 0:
-    dir.Append(Function(DirectoryItem(DumpertPage, title="[OUDER]", summary="Oudere items (pagina " + str(index+2) + ")", thumb=R(PLUGIN_ICON_NEXT)), pageUrl = url, pageIndex = index+1, viewGroup='Details', title = title))
+    dir.Append(Function(DirectoryItem(DumpertPage, title="[OUDER]", summary="Oudere items (pagina " + str(index+2) + ")", thumb=R(PLUGIN_ICON_NEXT)), pageUrl = url, pageIndex = index+1, viewGroup=viewGroup, title = title))
 
   if len(results) == 0: return MessageContainer("Zoekresultaat", "Er zijn geen items gevonden.")
   else: return dir
@@ -159,7 +159,7 @@ def OpenVideoItem(sender, title, summary, thumb, idPartOne, idPartTwo):
 
 def OpenPhotoItem(sender, title, summary, thumb, idPartOne, idPartTwo):
   dir = MediaContainer(title2=title, noCache=True)
-  dir.viewGroup = 'List'
+  dir.viewGroup = 'Details'
 
   #play button
   urls = ImageUrls(idPartOne, idPartTwo)
