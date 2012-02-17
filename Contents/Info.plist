@@ -28,6 +28,8 @@
 	</array>
 	<key>PlexPluginConsoleLogging</key>
 	<string>0</string>
+	<key>PlexClientPlatforms</key>
+	<string>*</string>
 	<key>PlexPluginMode</key>
 	<string>AlwaysOn</string>
 	<key>PlexVideoCodec</key>
